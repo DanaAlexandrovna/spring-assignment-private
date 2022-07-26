@@ -1,11 +1,10 @@
-package ro.sda.javaro35.finalProject.dto;
+package ro.sda.javaro35.finalProject.dto.flight;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import ro.sda.javaro35.finalProject.entities.Flight;
 
 @Getter
 @Setter
@@ -18,6 +17,8 @@ public class FlightDto {
     private String id;
     private String fromDestination;
     private String toDestination;
+    private double price;
+    private int quantity;
     private int flightTime;
     private String flightCode;
 }

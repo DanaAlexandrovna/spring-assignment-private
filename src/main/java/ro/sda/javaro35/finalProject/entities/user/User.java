@@ -1,6 +1,9 @@
-package ro.sda.javaro35.finalProject.entities;
+package ro.sda.javaro35.finalProject.entities.user;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,14 +21,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    int id;
+    String id;
     @Column
-    String username;
+    String name;
+
+    @Column
+    String lastName;
+
     @Column
     String dateOfBirth; // iSO Date format   yyyy-MM-dd
-    @Column
+
+    @Column(nullable=false, unique = true)
     String email;
-    @Column
+
+    @Column(nullable = false)
     String password;
+
+    String position;
+    @Enumerated(EnumType.STRING)
+    Preferences preferences;
 
 }

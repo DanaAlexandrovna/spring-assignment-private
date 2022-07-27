@@ -21,7 +21,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    String id;
+    Long id;
     @Column
     String name;
 
@@ -37,8 +37,5 @@ public class User {
     @Column(nullable = false)
     String password;
 
-    String position;
-    @Enumerated(EnumType.STRING)
-    Preferences preferences;
-
+    String roles;
 }

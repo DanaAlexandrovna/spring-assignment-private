@@ -14,11 +14,13 @@ import lombok.experimental.Accessors;
 //@JsonInclude(value = JsonInclude.Include.NON_NULL)
 //@JsonIgnoreProperties(ignoreUnknown = true)
 public class FlightDto {
-    private String id;
+    private Long id;
     private String fromDestination;
     private String toDestination;
+    private String departure;
     private double price;
     private int quantity;
     private int flightTime;
     private String flightCode;
+
 }

@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-public class Position {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     @OneToMany
     private List<User> userList;
-    private PositionType positionType;
+    private RoleType roleType;
 }

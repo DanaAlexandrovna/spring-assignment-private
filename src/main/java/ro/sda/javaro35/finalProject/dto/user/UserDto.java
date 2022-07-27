@@ -15,23 +15,12 @@ import javax.validation.constraints.NotNull;
 @Accessors(chain = true)
 @ToString
 public class UserDto {
-    @NotNull
-    @NotEmpty
-    private String id;
-    @NotNull
-    @NotEmpty
+    private Long id;
     private String name;
-    @NotNull
-    @NotEmpty
     private String lastName;
-    @NotNull
-    @NotEmpty
     private String dateOfBirth;
-    @NotNull
-    @NotEmpty
     private String email;
-    @NotNull
-    @NotEmpty
     private String password;
+    private String roles;
 
 }

@@ -20,7 +20,8 @@ public class FlightController {
     static final String BASE_URL = "/api/flights";
     private final FlightService flightService;
 
-    @GetMapping(path = "/fromDestination")
-    public List<FlightDto> getAllByFromDestination(@PathVariable String)
+    // TODO ERROR
+//    @GetMapping(path = "/fromDestination")
+//    public List<FlightDto> getAllByFromDestination(@PathVariable String)
 
 }

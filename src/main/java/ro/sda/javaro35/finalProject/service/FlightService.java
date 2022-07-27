@@ -70,16 +70,17 @@ public class FlightService {
         return existingFlight;
     }
 
-    public partialUpdate( ) {
-        log.info("update flight {}", Flight);
-        flightDto.flightAlreadyExists(FlightRepository dto)
-                .filter(existingProduct -> existingProduct.getId().equals(dto.getId()))
-                .map(existingProduct -> flightDto.save(dto))
-                .orElseThrow(() -> {
-                    log.error("product with id {} already exists", id);
-                    throw new ThisAlreadyExistsException("flight with " + id + " already exists");
-                });
-    }
+//    TODO ERROR, if the partialUpdate() is still necessary
+//    public partialUpdate( ) {
+//        log.info("update flight {}", Flight);
+//        flightDto.flightAlreadyExists(FlightRepository dto)
+//                .filter(existingProduct -> existingProduct.getId().equals(dto.getId()))
+//                .map(existingProduct -> flightDto.save(dto))
+//                .orElseThrow(() -> {
+//                    log.error("product with id {} already exists", id);
+//                    throw new ThisAlreadyExistsException("flight with " + id + " already exists");
+//                });
+//    }
 
     // delete
     @Transactional

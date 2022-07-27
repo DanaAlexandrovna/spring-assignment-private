@@ -32,14 +32,14 @@ public class UserMapper  {
         return userForm;
     }
 
-    public UserDto convertToEntity(User dto) {
-        UserDto user = null;
+    public User convertToEntity(UserDto dto) {
+        User user = null;
         if (dto.getId() != null) { // din baza de date aducem o entitate sa lucram cu ea
-            dto = userRepository.findById(dto.getId()).orElse(new User());
+            user = userRepository.findById(dto.getId()).orElse(new User());
         } else { // altfel se va creea alta
-            dto = new User();
+            user = new User();
         }
-        assert false;
+
         user.setId(dto.getId());
         user.setName(dto.getName());
         user.setLastName(dto.getLastName());

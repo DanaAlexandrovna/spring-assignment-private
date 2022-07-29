@@ -3,8 +3,12 @@ package ro.sda.javaro35.finalProject.entities.user;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
+import ro.sda.javaro35.finalProject.entities.flight.Flight;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Set;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @FieldDefaults(level = PRIVATE)
@@ -14,6 +18,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -32,5 +37,14 @@ public class User {
     String password;
 
     String roles;
+
+
+    // multiple users use multiple flights
+    @ManyToMany
+    @JoinTable(
+            name = "joined_user_flight",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "flight_id"))
+    Set<Flight> flights;
 
 }

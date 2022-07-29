@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.service;
+package ro.sda.javaro35.finalProject.service.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class UserMapper  {
         userForm.setId(entity.getId());
         userForm.setName(entity.getName());
         userForm.setLastName(entity.getLastName());
-        userForm.setDateOfBirth(entity.getDateOfBirth());
+//        userForm.setDateOfBirth(entity.getDateOfBirth());
         userForm.setEmail(entity.getEmail());
         userForm.setPassword(entity.getPassword());
         userForm.setRoles(entity.getRoles());
@@ -43,7 +43,7 @@ public class UserMapper  {
         user.setId(dto.getId());
         user.setName(dto.getName());
         user.setLastName(dto.getLastName());
-        user.setDateOfBirth(dto.getDateOfBirth());
+//        user.setDateOfBirth(dto.getDateOfBirth());
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.setRoles(dto.getRoles());

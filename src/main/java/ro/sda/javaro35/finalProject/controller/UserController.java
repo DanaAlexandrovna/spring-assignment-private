@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ro.sda.javaro35.finalProject.dto.user.UserDto;
 import ro.sda.javaro35.finalProject.entities.user.User;
-import ro.sda.javaro35.finalProject.service.UserService;
+import ro.sda.javaro35.finalProject.service.user.UserService;
 
 import java.util.List;
 
@@ -23,16 +24,21 @@ public class UserController {
     private final UserService userService;
 
 
-    // http://localhost:8080/users
+   // http://localhost:8080/users
 
     // map url to controller method
 
+    @GetMapping
+    public String page(final ModelMap modelMap){
+        modelMap.addAttribute("test","test2");
+            return "welcome";
+        }
 
     @GetMapping("/admin/users")
     public String showUsersPage(Model model) {
         // return a html page with users
         // add list of users
-        List<UserDto> users = userService.getAll();
+        List<UserDto> users = userService.findAll();
         model.addAttribute("usersInView", users);
 
         // resolved by the view resolver

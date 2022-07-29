@@ -1,14 +1,10 @@
 package ro.sda.javaro35.finalProject.entities.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-
+import javax.validation.constraints.Email;
 import static lombok.AccessLevel.PRIVATE;
 
 @FieldDefaults(level = PRIVATE)
@@ -17,6 +13,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -24,18 +21,16 @@ public class User {
     Long id;
     @Column
     String name;
-
     @Column
     String lastName;
-
-    @Column
-    String dateOfBirth; // iSO Date format   yyyy-MM-dd
-
-    @Column(nullable=false, unique = true)
+//    @Column
+//    String dateOfBirth; // iSO Date format   yyyy-MM-dd
+    @Column(nullable=false, unique=true)
+    @Email
     String email;
-
-    @Column(nullable = false)
+    @Column(nullable=false)
     String password;
 
     String roles;
+
 }

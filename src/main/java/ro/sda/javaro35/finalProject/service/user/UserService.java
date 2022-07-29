@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.service;
+package ro.sda.javaro35.finalProject.service.user;
 
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -28,11 +28,11 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class UserService implements UserDetailsService {
-    final UserRepository userRepository;
+    UserRepository userRepository;
     PasswordEncoder passwordEncoder;
     ModelMapper modelMapper;
 
-    private final UserMapper userMapper;
+    UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -65,8 +65,8 @@ public class UserService implements UserDetailsService {
     }
 
     //find all
-    public List<UserDto> getAll() {
-        log.debug("fetching all users");
+    public List<UserDto> findAll() {
+        log.debug("finding all users");
         return userRepository.findAll()
                 .stream()
                 .map(user -> modelMapper.map(user, UserDto.class))

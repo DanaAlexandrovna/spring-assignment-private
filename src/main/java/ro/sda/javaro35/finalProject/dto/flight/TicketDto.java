@@ -11,9 +11,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 @ToString
-//@JsonInclude(value = JsonInclude.Include.NON_NULL)
-//@JsonIgnoreProperties(ignoreUnknown = true)
-public class FlightDto {
+public class TicketDto {
     private Long id;
     private String fromDestination;
     private String toDestination;

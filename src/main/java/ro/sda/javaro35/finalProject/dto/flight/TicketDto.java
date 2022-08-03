@@ -12,13 +12,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ToString
 public class TicketDto {
+
     private Long id;
-    private String fromDestination;
-    private String toDestination;
-    private String departure;
-    private double price;
     private int quantity;
-    private int flightTime;
     private String flightCode;
 
 }

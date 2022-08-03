@@ -1,15 +1,11 @@
 package ro.sda.javaro35.finalProject.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ro.sda.javaro35.finalProject.dto.flight.AircraftDto;
 import ro.sda.javaro35.finalProject.entities.flight.Aircraft;
-import ro.sda.javaro35.finalProject.entities.user.User;
 
 import java.util.Optional;
 
-public interface AircraftRepository {
-
-    Optional<Aircraft> findById(Long id);
-
-    void save(AircraftDto aircraft);
+public interface AircraftRepository extends JpaRepository<Aircraft, Long> {
 
 }

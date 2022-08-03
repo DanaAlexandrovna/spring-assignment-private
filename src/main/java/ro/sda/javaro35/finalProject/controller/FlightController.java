@@ -3,7 +3,7 @@ package ro.sda.javaro35.finalProject.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ro.sda.javaro35.finalProject.service.flight.TicketService;
+import ro.sda.javaro35.finalProject.service.flight.service.TicketService;
 
 import static ro.sda.javaro35.finalProject.controller.FlightController.BASE_URL;
 

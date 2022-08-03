@@ -1,43 +1,39 @@
 package ro.sda.javaro35.finalProject.entities.flight;
 
-
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ro.sda.javaro35.finalProject.entities.user.User;
 
 import javax.persistence.*;
-
 import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 import static lombok.AccessLevel.PRIVATE;
 
-@ToString
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "flight")
 public class Flight {
-    @org.springframework.data.annotation.Id
-    @GeneratedValue(strategy = AUTO)
+
     @Id
+    @GeneratedValue(strategy = AUTO)
     Long id;
 
+
     // when does the flight take place
-    @Column
+
     String departure;  // ISO format datetime e.g.
     // yyyy-MM-DD'T'HH:mm:ss
-    @Column
+
     int flightTime; // how many minutes does the flight take
 
     // which gate
-    @Column
     int gate;
 
     // which price
-    @Column
     double price;
 
     // oneToMany relation to Airport:
@@ -51,17 +47,17 @@ public class Flight {
     // multiple planes use the same one plane
     // ManyToOne relation with planes
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "aircraft_id", nullable = false)
+    @JoinColumn(name = "destination_airport_id", nullable = false)
     Airport airport;
 
     // multiple flights can be booked by multiple users
-
-    // multiple users use multiple flights
     @ManyToMany
     @JoinTable(
             name = "joined_user_flight",
             joinColumns = @JoinColumn(name = "flight_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    Set<Flight> flights;
-
+    Set<User> users;
+    @ManyToOne
+    @JoinColumn(name = "aircraft_id")
+    Aircraft aircraft;
 }

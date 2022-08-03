@@ -11,10 +11,11 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 @ToString
-public class AircraftDto {
+public class FlightDto {
 
     private Long id;
-    private String make;
-    private int numberOfSeats;
-
+    private String departure;
+    private int flightTime;
+    private int gate;
+    private double price;
 }

@@ -9,22 +9,10 @@ import java.util.Optional;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
+ //   Object save(Ticket ticket);
 
-   List<Ticket> findTicketsByFromDestination(String fromDestination);
-   List<Ticket> findAllTicketsByFlightCode(String flightCode);
+    Optional<Object> findById(long Id);
 
+     List<TicketDto> findAllByFlightCode(String flightCode);
 
-
-   default Optional<Ticket> flightAlreadyExists(TicketDto dto) {
-        // find all flights that have the same departure, destination and flightTime
-        return findAll()
-                .stream()
-                .filter(
-                        ticket -> ticket.getToDestination() == dto.getToDestination() &&
-                                 ticket.getFromDestination() == dto.getFromDestination() &&
-                                 ticket.getDeparture() == dto.getDeparture() &&
-                                 ticket.getFlightTime() == dto.getFlightTime()
-                ).findFirst();
-    }
 }
-

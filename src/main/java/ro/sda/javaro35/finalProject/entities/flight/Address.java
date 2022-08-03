@@ -29,11 +29,4 @@ public class Address {
     @Column
     String address; // city, street, number
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

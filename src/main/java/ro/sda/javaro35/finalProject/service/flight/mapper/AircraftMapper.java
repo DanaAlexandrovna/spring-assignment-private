@@ -1,12 +1,15 @@
-package ro.sda.javaro35.finalProject.service.flight;
+package ro.sda.javaro35.finalProject.service.flight.mapper;
 
+import lombok.Data;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ro.sda.javaro35.finalProject.dto.flight.AircraftDto;
-import ro.sda.javaro35.finalProject.dto.flight.AirportDto;
-import ro.sda.javaro35.finalProject.dto.user.UserDto;
 import ro.sda.javaro35.finalProject.entities.flight.Aircraft;
-import ro.sda.javaro35.finalProject.entities.user.User;
 import ro.sda.javaro35.finalProject.repository.AircraftRepository;
 
+@Component
+@Service
+@Data
 public class AircraftMapper {
 
     AircraftRepository aircraftRepository;
@@ -14,8 +17,8 @@ public class AircraftMapper {
     public AircraftDto convertToDto(Aircraft entity) {
         AircraftDto aircraftDto = new AircraftDto();
         aircraftDto.setId(entity.getId());
-        aircraftDto.setAirlineCompany(entity.getAirlineCompany());
-        aircraftDto.setSeats(entity.getSeats());
+        aircraftDto.setMake(entity.getMake());
+        aircraftDto.setNumberOfSeats(entity.getNumberOfSeats());
         return aircraftDto;
     }
 
@@ -27,8 +30,8 @@ public class AircraftMapper {
             aircraft = new Aircraft();
         }
         aircraft.setId(dto.getId());
-        aircraft.setAirlineCompany(dto.getAirlineCompany());
-        aircraft.setSeats(dto.getSeats());
+        aircraft.setMake(dto.getMake());
+        aircraft.setNumberOfSeats(dto.getNumberOfSeats());
         return aircraft;
     }
 }

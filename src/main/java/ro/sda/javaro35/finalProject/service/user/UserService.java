@@ -25,14 +25,20 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Service
 @Slf4j
-@AllArgsConstructor
+
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class UserService implements UserDetailsService {
     UserRepository userRepository;
     PasswordEncoder passwordEncoder;
-    ModelMapper modelMapper;
+
 
     UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -53,11 +59,11 @@ public class UserService implements UserDetailsService {
 
         boolean emailAlreadyUsed = userRepository.findByEmailIgnoreCase(userForm.getEmail()).isPresent();
         if (emailAlreadyUsed) {
-            throw new ThisAlreadyExistsException("User with email " + userForm.getEmail() + " alread exists!");
+            throw new ThisAlreadyExistsException("User with email " + userForm.getEmail() + " already exists!");
         }
 
         userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
-        User userEntity = modelMapper.map(userForm, User.class);
+        User userEntity = userMapper.convertToEntity(userForm);
         if (userForm.getRoles() == null) {
             userForm.setRoles("USER");
         }
@@ -69,7 +75,7 @@ public class UserService implements UserDetailsService {
         log.debug("finding all users");
         return userRepository.findAll()
                 .stream()
-                .map(user -> modelMapper.map(user, UserDto.class))
+                .map(user -> userMapper.convertToDto(user))
                 .collect(toList());
     }
 
@@ -90,20 +96,13 @@ public class UserService implements UserDetailsService {
         userRepository.save(
                 userMapper.convertToEntity(userData)
         );
-//
-//        userRepository
-//                .findById(userId)
-//                .map(user -> userMapper.convertToEntity(userData))
-//                .ifPresent(userRepository::save);
-
 
     }
 
-
-    @Transactional
-    public void delete(Long id) {
-        log.info("deleting by id");
-        userRepository.deleteById(id);
-    }
+        @Transactional
+        public void delete(Long id) {
+            log.info("deleting by id");
+           userRepository.deleteById(id);
+}
 }
 

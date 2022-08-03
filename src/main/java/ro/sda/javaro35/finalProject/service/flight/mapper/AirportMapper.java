@@ -1,8 +1,6 @@
-package ro.sda.javaro35.finalProject.service.flight;
+package ro.sda.javaro35.finalProject.service.flight.mapper;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ro.sda.javaro35.finalProject.dto.flight.AirportDto;
@@ -11,9 +9,7 @@ import ro.sda.javaro35.finalProject.repository.AirportRepository;
 
 @Component
 @Service
-@Setter
-@Getter
-@AllArgsConstructor
+@Data
 public class AirportMapper {
 
     final AirportRepository airportrepository;
@@ -23,11 +19,10 @@ public class AirportMapper {
         AirportDto airportDto = new AirportDto();
         airportDto.setId(entity.getId());
         airportDto.setName(entity.getName());
-        airportDto.setGate(entity.getGate());
         return airportDto;
     }
 
-    public AirportDto convertToEntity(AirportDto dto){
+    public Airport convertToEntity(AirportDto dto){
         Airport airport = null;
         if (dto.getId() != null) { // din baza de date aducem o entitate sa lucram cu ea
             airport = airportrepository.findById(dto.getId()).orElse(new Airport());
@@ -36,7 +31,6 @@ public class AirportMapper {
         }
         airport.setId(dto.getId());
         airport.setName(dto.getName());
-        airport.setGate(dto.getGate());
         return airport;
     }
 }

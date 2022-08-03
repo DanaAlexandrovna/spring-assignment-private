@@ -24,13 +24,23 @@ public class Aircraft {
     @Column
     int numberOfSeats;
 
-    // each earcraft is used for multiple flights
-    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    // each aircraft is used for multiple flights
+    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     Set<Flight> flights;
 
     // OneToMany for an aircraft are booked multiple tickets
-    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
+
+    @ManyToOne
+    @JoinColumn(name = "airport_id")
+    private Airport airport;
+
+    public Airport getAirport() {
+        return airport;
+    }
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
+    }
 }

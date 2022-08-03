@@ -28,11 +28,8 @@ public class Airport {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-
-
-
-    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Aircraft aircraft;
+    private Set <Aircraft> aircraft;
 
 }

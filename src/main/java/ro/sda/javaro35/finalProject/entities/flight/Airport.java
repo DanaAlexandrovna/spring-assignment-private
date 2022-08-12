@@ -12,7 +12,8 @@ import static lombok.AccessLevel.PRIVATE;
 
 @ToString
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "airport")
@@ -21,15 +22,12 @@ public class Airport {
     @Id
     @GeneratedValue(strategy = AUTO)
     Long id;
-    @Column
+
     String name;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set <Aircraft> aircraft;
 
 }

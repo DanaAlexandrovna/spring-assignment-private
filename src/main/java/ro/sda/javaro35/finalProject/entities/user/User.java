@@ -3,7 +3,10 @@ package ro.sda.javaro35.finalProject.entities.user;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
+import ro.sda.javaro35.finalProject.entities.flight.Address;
+import ro.sda.javaro35.finalProject.entities.flight.Aircraft;
 import ro.sda.javaro35.finalProject.entities.flight.Flight;
+import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,8 +16,8 @@ import static lombok.AccessLevel.PRIVATE;
 
 @FieldDefaults(level = PRIVATE)
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -24,12 +27,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     Long id;
-    @Column
-    String name;
-    @Column
+
+    String firstName;
     String lastName;
-//    @Column
-//    String dateOfBirth; // iSO Date format   yyyy-MM-dd
+
     @Column(nullable=false, unique=true)
     @Email
     String email;
@@ -39,12 +40,9 @@ public class User {
     String roles;
 
 
-    // multiple users use multiple flights
-    @ManyToMany
-    @JoinTable(
-            name = "joined_user_flight",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "flight_id"))
-    Set<Flight> flights;
+    // one user buys many tickets
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set <Ticket> tickets;
 
 }

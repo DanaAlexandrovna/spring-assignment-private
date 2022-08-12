@@ -11,7 +11,8 @@ import static lombok.AccessLevel.PRIVATE;
 
 @ToString
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "aircraft")
@@ -19,28 +20,13 @@ public class Aircraft {
     @Id
     @GeneratedValue(strategy = AUTO)
     Long id;
-    @Column
+
     String make; // e.g. Boeing 737
-    @Column
+
     int numberOfSeats;
 
-    // each aircraft is used for multiple flights
-    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    Set<Flight> flights;
 
-    // OneToMany for an aircraft are booked multiple tickets
-    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "aircraft", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
-
-    @ManyToOne
-    @JoinColumn(name = "airport_id")
-    private Airport airport;
-
-    public Airport getAirport() {
-        return airport;
-    }
-
-    public void setAirport(Airport airport) {
-        this.airport = airport;
-    }
 }

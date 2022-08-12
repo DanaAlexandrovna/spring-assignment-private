@@ -1,20 +1,16 @@
 package ro.sda.javaro35.finalProject.entities.flight;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @ToString
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "address")
@@ -23,10 +19,15 @@ public class Address {
     @Id
     @Column(name = "id")
     private Long id;
-    @Column
+
     String country; // country
 
-    @Column
+
     String address; // city, street, number
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "airport_id", referencedColumnName = "id")
+    private Airport airport;
 
 }

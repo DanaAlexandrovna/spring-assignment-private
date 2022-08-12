@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 public class UserDto {
     private Long id;
-    private String name;
+    private String firstName;
     private String lastName;
     private String email;
     private String password;

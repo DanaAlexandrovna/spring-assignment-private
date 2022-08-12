@@ -10,6 +10,7 @@ import java.util.Set;
 import static javax.persistence.GenerationType.AUTO;
 import static lombok.AccessLevel.PRIVATE;
 
+@ToString
 @RequiredArgsConstructor
 @Getter
 @Setter
@@ -28,11 +29,6 @@ public class Flight {
     String departure;  // ISO format datetime e.g.
     // yyyy-MM-DD'T'HH:mm:ss
 
-    int flightTime; // how many minutes does the flight take
-
-    // which gate
-    int gate;
-
     // which price
     double price;
 
@@ -44,20 +40,11 @@ public class Flight {
     @JoinColumn(name = "to_airport_id", nullable = false)
     private Airport toAirport;
 
-    // multiple planes use the same one plane
-    // ManyToOne relation with planes
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "destination_airport_id", nullable = false)
-    Airport airport;
 
-    // multiple flights can be booked by multiple users
-    @ManyToMany
-    @JoinTable(
-            name = "joined_user_flight",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    Set<User> users;
-    @ManyToOne
-    @JoinColumn(name = "aircraft_id")
-    Aircraft aircraft;
+
+    // one flight to many tickets
+    @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set <Ticket> tickets;
+
 }

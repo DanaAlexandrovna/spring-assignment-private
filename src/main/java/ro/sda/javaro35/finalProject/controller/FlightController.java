@@ -13,9 +13,8 @@ import static ro.sda.javaro35.finalProject.controller.FlightController.BASE_URL;
 public class FlightController {
 
     static final String BASE_URL = "/api/flights";
-    private final TicketService ticketService;
+    private  TicketService ticketService;
 
-    // TODO ERROR
 //    @GetMapping(path = "/fromDestination")
 //    public List<FlightDto> getAllByFromDestination(@PathVariable String)
 

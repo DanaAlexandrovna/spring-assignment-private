@@ -2,6 +2,7 @@ package ro.sda.javaro35.finalProject.entities.flight;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ro.sda.javaro35.finalProject.entities.user.User;
 
 import javax.persistence.*;
 
@@ -10,7 +11,8 @@ import static lombok.AccessLevel.PRIVATE;
 
 @ToString
 @RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "ticket")
@@ -19,15 +21,16 @@ public class Ticket {
     @GeneratedValue(strategy = AUTO)
     Long id;
 
-    @Column
-    int quantity;
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 
-    @Column
-    String flightCode;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    // for each Ticket we have an unique aircraft
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "aircraft_id")
     private Aircraft aircraft;
+
 }

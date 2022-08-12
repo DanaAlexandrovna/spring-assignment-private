@@ -3,7 +3,6 @@ package ro.sda.javaro35.finalProject.service.user;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,20 +24,12 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Service
 @Slf4j
-
+@AllArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class UserService implements UserDetailsService {
     UserRepository userRepository;
     PasswordEncoder passwordEncoder;
-
-
     UserMapper userMapper;
-
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.userMapper = userMapper;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -104,5 +95,6 @@ public class UserService implements UserDetailsService {
             log.info("deleting by id");
            userRepository.deleteById(id);
 }
+
 }
 

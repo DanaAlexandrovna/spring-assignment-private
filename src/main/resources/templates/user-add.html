@@ -20,18 +20,12 @@
        <form  method="post" th:action="@{/admin/users/add}" th:object="${user}">
 
             <div>
-                <label for="name">Name</label>
-                <input id="name" th:field="*{name}" type="text">
+                <label for="name">First Name</label>
+                <input id="name" th:field="*{firstName}" type="text">
 
                 <label for="name">Last Name</label>
                 <input id="lastName" th:field="*{lastName}" type="text">
             </div>
-
-<!--            <div>-->
-<!--                <label for="date">da</label>-->
-<!--                <input id="dateOfBirth" th:field="*{dateOfBirth}" type="url">-->
-<!--            </div>-->
-
             <div>
                 <label for="email">email</label>
                 <input id="email" th:field="*{email}" type="email" pattern=".+@[a-z].^{3}[a-z]{3}$" size="30" required>
@@ -46,8 +40,6 @@
                 <label for="roles">role</label>
                 <input id="roles" th:field="*{roles}" type="text">
             </div>
-
-
 
             <div>
                 <a th:href="@{/admin/users}">

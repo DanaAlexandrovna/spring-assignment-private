@@ -7,10 +7,10 @@ import org.springframework.web.context.request.WebRequest;
 import ro.sda.javaro35.finalProject.dto.user.UserDto;
 
 public class SignUpController {
-    @GetMapping("/user/sign-up")
+    @GetMapping("/user/register")
     public String showSignUpDoc(WebRequest request, Model model){
         UserDto userDto = new UserDto();
         model.addAttribute("user",userDto);
-        return "sign-up";
+        return "register";
     }
 }

@@ -17,15 +17,11 @@ public class TicketMapper {
     public TicketDto convertToDto(Ticket entity) {
         TicketDto result = new TicketDto();
         result.setId(entity.getId());
-        result.setQuantity(entity.getQuantity());
-        result.setFlightCode(entity.getFlightCode());
         return result;
     }
 
     public Ticket convertToEntity(TicketDto dto) {
         Ticket ticket = new Ticket();
-        ticket.setQuantity(dto.getQuantity());
-        ticket.setFlightCode(dto.getFlightCode());
         return ticket;
     }
 }

@@ -2,6 +2,7 @@ package ro.sda.javaro35.finalProject.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,8 @@ import ro.sda.javaro35.finalProject.service.user.UserService;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogInController {
-
-  private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/login")
     public String showLoginForm() {

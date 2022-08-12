@@ -23,9 +23,8 @@ public class UserMapper  {
     public UserDto convertToDto(User entity) {
         UserDto userForm = new UserDto();
         userForm.setId(entity.getId());
-        userForm.setName(entity.getName());
+        userForm.setFirstName(entity.getFirstName());
         userForm.setLastName(entity.getLastName());
-//        userForm.setDateOfBirth(entity.getDateOfBirth());
         userForm.setEmail(entity.getEmail());
         userForm.setPassword(entity.getPassword());
         userForm.setRoles(entity.getRoles());
@@ -41,9 +40,8 @@ public class UserMapper  {
         }
 
         user.setId(dto.getId());
-        user.setName(dto.getName());
+        user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
-//        user.setDateOfBirth(dto.getDateOfBirth());
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.setRoles(dto.getRoles());

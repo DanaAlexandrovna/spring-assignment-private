@@ -18,8 +18,6 @@ public class FlightMapper {
         FlightDto flightDto = new FlightDto();
         flightDto.setId(entity.getId());
         flightDto.setDeparture(entity.getDeparture());
-        flightDto.setFlightTime(entity.getFlightTime());
-        flightDto.setGate(entity.getGate());
         flightDto.setPrice(entity.getPrice());
         return flightDto;
     }
@@ -33,8 +31,6 @@ public class FlightMapper {
         }
         flight.setId(dto.getId());
         flight.setDeparture(dto.getDeparture());
-        flight.setFlightTime(dto.getFlightTime());
-        flight.setGate(dto.getGate());
         flight.setPrice(dto.getPrice());
         return flight;
     }

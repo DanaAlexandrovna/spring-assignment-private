@@ -10,6 +10,7 @@ import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Objects;
 import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -18,9 +19,6 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 @Table(name = "user")
 public class User {
     @Id
@@ -40,9 +38,34 @@ public class User {
     String roles;
 
 
+
     // one user buys many tickets
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set <Ticket> tickets;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(roles, user.roles) && Objects.equals(tickets, user.tickets);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password, roles, tickets);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", roles='" + roles + '\'' +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

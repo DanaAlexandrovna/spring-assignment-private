@@ -19,21 +19,22 @@ public class LogInController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String showRegisterPage(Model model) {
-        User newUser = new User();
-        model.addAttribute("user", newUser);
+    @GetMapping ("/register")
+    public String getRegisterPage(Model model){
+        model.addAttribute("registerRequest", new User());
         return "register";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage(Model model){
+        model.addAttribute("loginRequest", new User());
+        return "login";
+    }
+
     @PostMapping("/register")
-    public String add(@ModelAttribute UserDto dto) {
-        userService.save(dto);
-        return "redirect:/";
+    public String register(@ModelAttribute UserDto user){
+        System.out.println("register request" + user);
+        UserDto register = userService.save(user);
+        return register == null ? "error_page" : "redirect:/login";
     }
 }

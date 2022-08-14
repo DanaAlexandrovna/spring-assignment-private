@@ -2,6 +2,7 @@ package ro.sda.javaro35.finalProject.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,7 +19,9 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
-    private UserService userService;
+    @Autowired
+    private final UserService userService;
+
 
     @GetMapping("/users")
     public String showUsers(Model model) {

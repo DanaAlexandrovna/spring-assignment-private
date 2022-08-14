@@ -45,7 +45,7 @@ public class UserService implements UserDetailsService {
     }
 
     //create
-    public void save(UserDto userForm) {
+    public UserDto save(UserDto userForm) {
         log.info("saving user with email {}", userForm.getEmail());
 
         boolean emailAlreadyUsed = userRepository.findByEmailIgnoreCase(userForm.getEmail()).isPresent();
@@ -59,6 +59,7 @@ public class UserService implements UserDetailsService {
             userForm.setRoles("USER");
         }
         userRepository.save(userEntity);
+        return userForm;
     }
 
     //find all

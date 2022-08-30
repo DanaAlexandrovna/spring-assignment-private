@@ -9,6 +9,7 @@ import ro.sda.javaro35.finalProject.repository.TicketRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,6 +19,12 @@ public class TicketService {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+
+
+    public List<Ticket> findAll() {
+        return ticketRepository.findAll();
+    }
 
     public Ticket addTicket(Ticket ticket) {
         ticket.setId(ticket.getId());

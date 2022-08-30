@@ -9,7 +9,8 @@ import ro.sda.javaro35.finalProject.service.user.RegistrationService;
 @RestController
 @RequestMapping(path = "api/v1/registration")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegistrationController {
 
     private final RegistrationService registrationService;

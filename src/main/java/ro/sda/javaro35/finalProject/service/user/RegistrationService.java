@@ -1,7 +1,7 @@
 package ro.sda.javaro35.finalProject.service.user;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
+//import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class RegistrationService {
 
     public String register(RegistrationRequest request) {
                                                 //test?
-        boolean isValidEmail = emailValidator.equals(request.getEmail());
+        boolean isValidEmail = emailValidator.test(request.getEmail());
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");

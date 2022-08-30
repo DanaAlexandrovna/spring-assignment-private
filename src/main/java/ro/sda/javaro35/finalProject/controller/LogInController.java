@@ -10,7 +10,7 @@ import ro.sda.javaro35.finalProject.service.user.UserService;
 @RestController
 @RequestMapping(path = "api/v1/login")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LogInController {
 
     private UserService userService;

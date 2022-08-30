@@ -2,100 +2,92 @@ package ro.sda.javaro35.finalProject.service.user;
 
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ro.sda.javaro35.finalProject.dto.user.UserDto;
+import ro.sda.javaro35.finalProject.entities.user.ConfirmationToken;
 import ro.sda.javaro35.finalProject.entities.user.User;
-import ro.sda.javaro35.finalProject.exceptions.ThisAlreadyExistsException;
 import ro.sda.javaro35.finalProject.repository.UserRepository;
+import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
 @Service
-@Slf4j
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class UserService implements UserDetailsService {
+
+    private static final String USER_NOT_FOUND_MSG =
+            "user with email %s not found";
     UserRepository userRepository;
     PasswordEncoder passwordEncoder;
-    UserMapper userMapper;
+    ConfirmationTokenService confirmationTokenService;
+
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByEmailIgnoreCase(email);
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException("Invalid email or password");
-        }
-        List<SimpleGrantedAuthority> roles = new ArrayList<>();
-        String role = "ROLE_" + user.get().getRoles();
-        roles.add(new SimpleGrantedAuthority(role));
-        return new org.springframework.security.core.userdetails.User(user.get().getEmail(),
-                user.get().getPassword(), roles);
+    public UserDetails loadUserByUsername(String email)
+            throws UsernameNotFoundException {
+        return (UserDetails) userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException(
+                                String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    //create
-    public UserDto save(UserDto userForm) {
-        log.info("saving user with email {}", userForm.getEmail());
-
-        boolean emailAlreadyUsed = userRepository.findByEmailIgnoreCase(userForm.getEmail()).isPresent();
-        if (emailAlreadyUsed) {
-            throw new ThisAlreadyExistsException("User with email " + userForm.getEmail() + " already exists!");
+    public User authenticate(LoginRequest request) {
+        if (request != null) {
+            User appUser = userRepository.authenticate(request.getEmail());
+            if (appUser != null) {
+                if (passwordEncoder.matches(request.getPassword(), appUser.getPassword())) {
+                    appUser.setPassword(null);
+                    return appUser;
+                }
+            }
         }
-
-        userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
-        User userEntity = userMapper.convertToEntity(userForm);
-        if (userForm.getRoles() == null) {
-            userForm.setRoles("USER");
-        }
-        userRepository.save(userEntity);
-        return userForm;
+        return null;
     }
 
-    //find all
-    public List<UserDto> findAll() {
-        log.debug("finding all users");
-        return userRepository.findAll()
-                .stream()
-                .map(user -> userMapper.convertToDto(user))
-                .collect(toList());
-    }
+    public String signUpUser(User appUser) {
+        boolean userExists = userRepository
+                .findByEmail(appUser.getEmail())
+                .isPresent();
 
-    public User findById(Long id) {
-        log.info("finding by id");
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("user not found"));
-    }
+        if (userExists) {
+            // TODO check of attributes are the same and
+            // TODO if email not confirmed send confirmation email.
 
-    public void update(Long userId, UserDto userData) {
-        log.info("update user with id={}, using new data={}", userId, userData);
-
-        if (userRepository.findById(userId).isEmpty()) {
-            throw new RuntimeException("user not found");
+            throw new IllegalStateException("email already taken");
         }
+        System.out.println(appUser.getEmail() + "==" + appUser.getPassword());
+        String encodedPassword = passwordEncoder
+                .encode(appUser.getPassword());
 
-        userData.setId(userId); // so we can use convertToEntity
-        userRepository.save(
-                userMapper.convertToEntity(userData)
+        appUser.setPassword(encodedPassword);
+
+        userRepository.save(appUser);
+
+        String token = UUID.randomUUID().toString();
+
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                appUser
         );
 
+        confirmationTokenService.saveConfirmationToken(
+                confirmationToken);
+
+//        TODO: SEND EMAIL
+
+        return token;
     }
 
-        @Transactional
-        public void delete(Long id) {
-            log.info("deleting by id");
-           userRepository.deleteById(id);
+    public int enableAppUser(String email) {
+        return userRepository.enableAppUser(email);
+    }
 }
-
-}
-

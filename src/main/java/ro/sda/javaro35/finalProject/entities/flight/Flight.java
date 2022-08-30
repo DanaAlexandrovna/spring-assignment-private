@@ -23,7 +23,6 @@ public class Flight {
     @GeneratedValue(strategy = AUTO)
     Long id;
 
-
     // when does the flight take place
 
     String departure;  // ISO format datetime e.g.

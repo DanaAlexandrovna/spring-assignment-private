@@ -24,7 +24,7 @@ public class TicketController {
 
     @GetMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Ticket> getBookById(@PathVariable("id") Long id) {
+    public ResponseEntity<Ticket> findById(@PathVariable("id") Long id) {
         Ticket ticket = ticketService.findById(id);
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }

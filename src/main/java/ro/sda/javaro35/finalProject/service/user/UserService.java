@@ -1,7 +1,6 @@
 package ro.sda.javaro35.finalProject.service.user;
 
 import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +14,8 @@ import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static lombok.AccessLevel.PRIVATE;
-
 @Service
 @AllArgsConstructor
-@FieldDefaults(level = PRIVATE, makeFinal = true)
 public class UserService implements UserDetailsService {
 
     private static final String USER_NOT_FOUND_MSG =

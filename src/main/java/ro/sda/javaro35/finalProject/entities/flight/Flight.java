@@ -9,7 +9,6 @@ import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 import static lombok.AccessLevel.PRIVATE;
-
 @ToString
 @RequiredArgsConstructor
 @Getter

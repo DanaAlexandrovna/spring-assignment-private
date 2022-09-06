@@ -27,7 +27,22 @@ import java.util.Arrays;
 
 
 @Configuration
-public class CorsConfig {
+public class CorsConfig implements WebMvcConfigurer{
+
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry) {
+        corsRegistry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("*")
+                .maxAge(3600L)
+                .allowedHeaders("*")
+                .exposedHeaders("Authorization")
+                .allowCredentials(false);
+    }
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     // TODO the mail sender is nod configured (no methods were implemented)
     @Bean
@@ -74,12 +89,8 @@ public class CorsConfig {
             }
         };
     }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
+
 
 //@EnableWebSecurity
 //@AllArgsConstructor
@@ -94,20 +105,4 @@ public class CorsConfig {
 //
 //    }
 //}
-
-@Configuration
-@EnableWebMvc
-class WebConfig implements WebMvcConfigurer {
-
-    @Override
-    public void addCorsMappings(CorsRegistry corsRegistry) {
-        corsRegistry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("*")
-                .maxAge(3600L)
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization")
-                .allowCredentials(true);
-    }
-}
 

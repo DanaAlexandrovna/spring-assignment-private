@@ -11,14 +11,14 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("ticket")      //    /books/
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET})
+@RequestMapping(path = "tickets")      //    /books/
+@CrossOrigin(origins = "http://localhost:4200")
 public class TicketController {
     private final TicketService ticketService;
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200")
-    List<Ticket> readAll() {
+    public List<Ticket> readAll() {
         return ticketService.findAll();
     }
 
@@ -28,5 +28,4 @@ public class TicketController {
         Ticket ticket = ticketService.findById(id);
         return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
-
 }

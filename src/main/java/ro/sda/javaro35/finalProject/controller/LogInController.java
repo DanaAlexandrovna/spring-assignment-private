@@ -14,6 +14,7 @@ public class LogInController {
     private LoginService loginService;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public User authenticate(@RequestBody LoginRequest request) {
         User result = loginService.authenticate(request);
         return result;

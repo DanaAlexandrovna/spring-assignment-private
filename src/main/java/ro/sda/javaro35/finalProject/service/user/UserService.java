@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ro.sda.javaro35.finalProject.entities.user.ConfirmationToken;
+import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationTokenService;
 import ro.sda.javaro35.finalProject.entities.user.User;
 import ro.sda.javaro35.finalProject.repository.UserRepository;
 import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
@@ -47,41 +47,7 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
-    public String signUpUser(User appUser) {
-        boolean userExists = userRepository
-                .findByEmail(appUser.getEmail())
-                .isPresent();
 
-        if (userExists) {
-            // TODO check of attributes are the same and
-            // TODO if email not confirmed send confirmation email.
-
-            throw new IllegalStateException("email already taken");
-        }
-        System.out.println(appUser.getEmail() + "==" + appUser.getPassword());
-        String encodedPassword = passwordEncoder
-                .encode(appUser.getPassword());
-
-        appUser.setPassword(encodedPassword);
-
-        userRepository.save(appUser);
-
-        String token = UUID.randomUUID().toString();
-
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
-                appUser
-        );
-
-        confirmationTokenService.saveConfirmationToken(
-                confirmationToken);
-
-//        TODO: SEND EMAIL
-
-        return token;
-    }
 
     public int enableAppUser(String email) {
         return userRepository.enableAppUser(email);

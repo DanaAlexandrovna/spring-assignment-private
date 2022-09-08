@@ -1,16 +1,16 @@
 package ro.sda.javaro35.finalProject.service.user;
 
+
 import lombok.AllArgsConstructor;
-//import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
-import ro.sda.javaro35.finalProject.entities.user.ConfirmationToken;
-import ro.sda.javaro35.finalProject.repository.EmailSender;
-
-import ro.sda.javaro35.finalProject.entities.user.RoleType;
-import ro.sda.javaro35.finalProject.entities.user.User;
+import ro.sda.javaro35.finalProject.appuser.AppUser;
+import ro.sda.javaro35.finalProject.appuser.AppUserRole;
+import ro.sda.javaro35.finalProject.appuser.AppUserService;
+import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationToken;
+import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationTokenService;
 import ro.sda.javaro35.finalProject.entities.request.RegistrationRequest;
+import ro.sda.javaro35.finalProject.repository.EmailSender;
 
 import java.time.LocalDateTime;
 
@@ -18,26 +18,26 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RegistrationService {
 
-    private final UserService userService;
+    private final AppUserService appUserService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
 
     public String register(RegistrationRequest request) {
-                                                //test?
-        boolean isValidEmail = emailValidator.test(request.getEmail());
+        boolean isValidEmail = emailValidator.
+                test(request.getEmail());
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
 
-        String token = userService.signUpUser(
-                new User(
+        String token = appUserService.signUpUser(
+                new AppUser(
                         request.getFirstName(),
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
-                        RoleType.USER
+                        AppUserRole.USER
 
                 )
         );
@@ -68,7 +68,7 @@ public class RegistrationService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        userService.enableAppUser(
+        appUserService.enableAppUser(
                 confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }

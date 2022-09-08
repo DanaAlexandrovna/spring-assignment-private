@@ -1,8 +1,9 @@
-package ro.sda.javaro35.finalProject.entities.user;
+package ro.sda.javaro35.finalProject.controller.registration.token;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ro.sda.javaro35.finalProject.appuser.AppUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +13,17 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 public class ConfirmationToken {
+
+    @SequenceGenerator(
+            name = "confirmation_token_sequence",
+            sequenceName = "confirmation_token_sequence",
+            allocationSize = 1
+    )
     @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "confirmation_token_sequence"
+    )
     private Long id;
 
     @Column(nullable = false)
@@ -29,14 +40,14 @@ public class ConfirmationToken {
     @ManyToOne
     @JoinColumn(
             nullable = false,
-            name = "user_id"
+            name = "app_user_id"
     )
-    private User appUser;
+    private AppUser appUser;
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
                              LocalDateTime expiresAt,
-                             User appUser) {
+                             AppUser appUser) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;

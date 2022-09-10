@@ -43,7 +43,7 @@ public class AircraftService {
         return aircraftRepository.save(update);
     }
 
-    public void delete(Long id) {
+    public void deleteAircraft(Long id) {
         aircraftRepository.deleteById(id);
     }
 }

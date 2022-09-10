@@ -1,8 +1,6 @@
 package ro.sda.javaro35.finalProject.service.flight;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.javaro35.finalProject.entities.flight.Airport;
@@ -27,14 +25,8 @@ public class AirportService {
     }
 
     //read all ???
-    public Page<Airport> findAllAirports(Pageable pageable) {
-        Page<Airport> result = airportRepository.findAll(pageable);
-        return result;
-    }
-
-    public List<Airport> findAll(Airport list) {
-        List<Airport> airportList = airportRepository.findAll();
-        return airportList;
+    public List<Airport> findAllAirports() {
+        return airportRepository.findAll();
     }
 
     //find one
@@ -46,7 +38,7 @@ public class AirportService {
         return airportRepository.save(update);
     }
 
-    public void delete(Long id) {
+    public void deleteAirport(Long id) {
         airportRepository.deleteById(id);
     }
 }

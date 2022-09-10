@@ -1,6 +1,9 @@
 package ro.sda.javaro35.finalProject.entities.flight;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import ro.sda.javaro35.finalProject.entities.user.User;
 
@@ -32,5 +35,4 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "aircraft_id")
     private Aircraft aircraft;
-
 }

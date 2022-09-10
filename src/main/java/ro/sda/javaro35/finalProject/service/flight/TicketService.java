@@ -1,8 +1,7 @@
 package ro.sda.javaro35.finalProject.service.flight;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import ro.sda.javaro35.finalProject.exceptions.CantBeFoundException;
 import ro.sda.javaro35.finalProject.repository.TicketRepository;
@@ -12,14 +11,16 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
-@Transactional
-@AllArgsConstructor
 public class TicketService {
     final TicketRepository ticketRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    public TicketService(TicketRepository ticketRepository) {
+        this.ticketRepository = ticketRepository;
+    }
 
 
     public List<Ticket> findAll() {
@@ -27,8 +28,9 @@ public class TicketService {
     }
 
     public Ticket addTicket(Ticket ticket) {
-        ticket.setId(ticket.getId());
-        return ticket;
+     //   ticket.setId(UUID.randomUUID().toString());
+       ticket.setId(ticket.getId());
+        return ticketRepository.save(ticket);
     }
 
     public Ticket findById(Long id) {
@@ -43,9 +45,10 @@ public class TicketService {
     }
 
     // delete
-    public void delete(Long id) {
-        ticketRepository.deleteById(id);
+    public void deleteTicket(Long id) {
+        ticketRepository.deleteTicketById(id);
     }
+
 
 //    public List<Ticket> findAvailableTickets() {
 //        return entityManager.createQuery("SELECT p FROM Ticket p WHERE p.available is true",

@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.controller.registration.token;
+package ro.sda.javaro35.finalProject.service.user.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

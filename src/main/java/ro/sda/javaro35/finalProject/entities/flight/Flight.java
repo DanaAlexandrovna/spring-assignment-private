@@ -2,7 +2,6 @@ package ro.sda.javaro35.finalProject.entities.flight;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ro.sda.javaro35.finalProject.entities.user.User;
 
 import javax.persistence.*;
 import java.util.Set;

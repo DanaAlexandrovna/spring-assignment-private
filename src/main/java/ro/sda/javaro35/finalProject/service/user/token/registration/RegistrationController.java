@@ -1,5 +1,5 @@
 
-package ro.sda.javaro35.finalProject.controller.registration;
+package ro.sda.javaro35.finalProject.service.user.token.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

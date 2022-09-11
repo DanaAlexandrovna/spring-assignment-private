@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.appuser;
+package ro.sda.javaro35.finalProject.service.user.token.zappuser;
 
 
 
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationToken;
-import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationTokenService;
+import ro.sda.javaro35.finalProject.service.user.token.ConfirmationToken;
+import ro.sda.javaro35.finalProject.service.user.token.ConfirmationTokenService;
 import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
 
 import java.time.LocalDateTime;

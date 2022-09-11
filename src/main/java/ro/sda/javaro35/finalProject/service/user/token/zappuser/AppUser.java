@@ -1,6 +1,5 @@
-package ro.sda.javaro35.finalProject.appuser;
+package ro.sda.javaro35.finalProject.service.user.token.zappuser;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,13 +11,14 @@ import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Table(name = "appUser")
 public class AppUser implements UserDetails {
 
 
@@ -101,5 +101,18 @@ public class AppUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppUser appUser = (AppUser) o;
+        return Objects.equals(id, appUser.id) && Objects.equals(firstName, appUser.firstName) && Objects.equals(lastName, appUser.lastName) && Objects.equals(email, appUser.email) && Objects.equals(password, appUser.password) && appUserRole == appUser.appUserRole && Objects.equals(locked, appUser.locked) && Objects.equals(enabled, appUser.enabled) && Objects.equals(tickets, appUser.tickets);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password, appUserRole, locked, enabled, tickets);
     }
 }

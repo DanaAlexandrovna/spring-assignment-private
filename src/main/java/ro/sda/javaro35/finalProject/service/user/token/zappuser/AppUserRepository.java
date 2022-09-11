@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.appuser;
+package ro.sda.javaro35.finalProject.service.user.token.zappuser;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

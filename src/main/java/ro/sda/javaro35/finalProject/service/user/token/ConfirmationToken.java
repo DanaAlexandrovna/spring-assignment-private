@@ -1,9 +1,9 @@
-package ro.sda.javaro35.finalProject.controller.registration.token;
+package ro.sda.javaro35.finalProject.service.user.token;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ro.sda.javaro35.finalProject.appuser.AppUser;
+import ro.sda.javaro35.finalProject.service.user.token.zappuser.AppUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

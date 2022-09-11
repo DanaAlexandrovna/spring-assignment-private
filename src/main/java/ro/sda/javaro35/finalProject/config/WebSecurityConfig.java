@@ -1,6 +1,10 @@
 package ro.sda.javaro35.finalProject.config;
 
 import lombok.AllArgsConstructor;
+<<<<<<< HEAD
+=======
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+>>>>>>> origin/dev
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.MailException;
@@ -13,10 +17,26 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<<<<<<< HEAD
 import ro.sda.javaro35.finalProject.service.user.token.zappuser.AppUserService;
 
 import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
+=======
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import ro.sda.javaro35.finalProject.appuser.AppUserService;
+
+import javax.mail.internet.MimeMessage;
+import java.io.InputStream;
+import java.util.Arrays;
+>>>>>>> origin/dev
 
 
 @Configuration

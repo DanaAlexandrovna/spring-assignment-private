@@ -8,6 +8,7 @@ import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import ro.sda.javaro35.finalProject.service.flight.AddressService;
 
 @RestController
+@RequestMapping(path = "addresses")
 public class AddressController {
 
     private final AddressService addressService;

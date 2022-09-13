@@ -10,6 +10,7 @@ import ro.sda.javaro35.finalProject.service.flight.AirportService;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "airports")
 public class AirportController {
 
     private final AirportService airportService;

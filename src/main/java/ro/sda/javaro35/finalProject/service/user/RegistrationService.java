@@ -10,7 +10,7 @@ import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.Conf
 import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationTokenService;
 import ro.sda.javaro35.finalProject.service.user.appuser.request.RegistrationRequest;
 import ro.sda.javaro35.finalProject.repository.EmailSender;
-import ro.sda.javaro35.finalProject.service.user.token.zappuser.AppUserRole;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUserRole;
 
 import java.time.LocalDateTime;
 

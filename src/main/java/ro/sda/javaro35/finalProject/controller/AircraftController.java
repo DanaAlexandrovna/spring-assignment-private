@@ -8,6 +8,7 @@ import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import ro.sda.javaro35.finalProject.service.flight.AircraftService;
 
 @RestController
+@RequestMapping(path = "aircrafts")
 public class AircraftController {
 
     private final AircraftService aircraftService;

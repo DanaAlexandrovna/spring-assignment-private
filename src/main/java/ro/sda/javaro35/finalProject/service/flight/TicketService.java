@@ -1,5 +1,6 @@
 package ro.sda.javaro35.finalProject.service.flight;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sda.javaro35.finalProject.entities.flight.Ticket;

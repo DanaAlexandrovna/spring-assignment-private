@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.controller.registration.token;
+package ro.sda.javaro35.finalProject.service.user.appuser.registration.token;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

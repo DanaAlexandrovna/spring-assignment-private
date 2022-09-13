@@ -4,13 +4,13 @@ package ro.sda.javaro35.finalProject.service.user;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.sda.javaro35.finalProject.appuser.AppUser;
-import ro.sda.javaro35.finalProject.appuser.AppUserRole;
-import ro.sda.javaro35.finalProject.appuser.AppUserService;
-import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationToken;
-import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationTokenService;
-import ro.sda.javaro35.finalProject.entities.request.RegistrationRequest;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUser;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUserService;
+import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationToken;
+import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationTokenService;
+import ro.sda.javaro35.finalProject.service.user.appuser.request.RegistrationRequest;
 import ro.sda.javaro35.finalProject.repository.EmailSender;
+import ro.sda.javaro35.finalProject.service.user.token.zappuser.AppUserRole;
 
 import java.time.LocalDateTime;
 

@@ -18,20 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import ro.sda.javaro35.finalProject.appuser.AppUserService;
-
-import javax.mail.internet.MimeMessage;
-import java.io.InputStream;
-import java.util.Arrays;
-
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUserService;
 
 
 @Configuration
@@ -42,6 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider =
+                new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(bCryptPasswordEncoder);
+        provider.setUserDetailsService(appUserService);
+        return provider;
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -73,14 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider =
-                new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(appUserService);
-        return provider;
-    }
+
 
 
     @Bean

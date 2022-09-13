@@ -1,19 +1,20 @@
 package ro.sda.javaro35.finalProject.service.flight;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ro.sda.javaro35.finalProject.entities.flight.Airport;
 import ro.sda.javaro35.finalProject.entities.flight.Flight;
 import ro.sda.javaro35.finalProject.exceptions.CantBeFoundException;
 import ro.sda.javaro35.finalProject.repository.FlightRepository;
 
 @Service
-@Transactional
-@AllArgsConstructor
 public class FlightService {
 
     private final FlightRepository flightRepository;
+
+    @Autowired
+    public FlightService(FlightRepository flightRepository) {
+        this.flightRepository = flightRepository;
+    }
 
     //save ??????
     public Flight addFlight(Flight flight) {

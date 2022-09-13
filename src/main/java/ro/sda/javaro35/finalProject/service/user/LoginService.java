@@ -3,7 +3,7 @@ package ro.sda.javaro35.finalProject.service.user;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.sda.javaro35.finalProject.entities.user.User;
-import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
+import ro.sda.javaro35.finalProject.service.user.appuser.request.LoginRequest;
 
 @Service
 @AllArgsConstructor

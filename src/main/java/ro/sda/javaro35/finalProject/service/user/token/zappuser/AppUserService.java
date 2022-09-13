@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ro.sda.javaro35.finalProject.service.user.token.ConfirmationToken;
 import ro.sda.javaro35.finalProject.service.user.token.ConfirmationTokenService;
-import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
+import ro.sda.javaro35.finalProject.service.user.appuser.request.LoginRequest;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

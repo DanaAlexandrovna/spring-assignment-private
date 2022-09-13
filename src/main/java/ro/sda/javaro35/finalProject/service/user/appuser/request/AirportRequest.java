@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.entities.request;
+package ro.sda.javaro35.finalProject.service.user.appuser.request;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,8 +9,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class AddressRequest {
+public class AirportRequest {
+
     private final Long id;
-    private final String country;
-    private final String address;
+    private final String name;
 }

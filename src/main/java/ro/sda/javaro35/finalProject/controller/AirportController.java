@@ -19,7 +19,7 @@ public class AirportController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Airport>> getAllAirports(){
+    public ResponseEntity<List<Airport>> getAllAirports() {
         List<Airport> airports = airportService.findAllAirports();
         return new ResponseEntity<>(airports, HttpStatus.OK);
     }
@@ -32,19 +32,19 @@ public class AirportController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Airport> addAirport(@RequestBody Airport airport){
+    public ResponseEntity<Airport> addAirport(@RequestBody Airport airport) {
         Airport addAirport = airportService.addAirport(airport);
         return new ResponseEntity<>(addAirport, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Airport> updateAirport(@RequestBody Airport airport){
+    public ResponseEntity<Airport> updateAirport(@RequestBody Airport airport) {
         Airport updateAirport = airportService.updateAirport(airport);
         return new ResponseEntity<>(updateAirport, HttpStatus.OK);
     }
 
-    @DeleteMapping ("/delete/{id}")
-    public ResponseEntity<?> deleteAirport(@PathVariable("id") Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteAirport(@PathVariable("id") Long id) {
         airportService.deleteAirport(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

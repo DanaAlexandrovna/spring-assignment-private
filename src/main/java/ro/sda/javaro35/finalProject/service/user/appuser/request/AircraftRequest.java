@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.entities.request;
+package ro.sda.javaro35.finalProject.service.user.appuser.request;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

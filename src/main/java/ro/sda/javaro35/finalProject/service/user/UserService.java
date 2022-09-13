@@ -6,13 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ro.sda.javaro35.finalProject.controller.registration.token.ConfirmationTokenService;
+import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationTokenService;
 import ro.sda.javaro35.finalProject.entities.user.User;
 import ro.sda.javaro35.finalProject.repository.UserRepository;
-import ro.sda.javaro35.finalProject.entities.request.LoginRequest;
-
-import java.time.LocalDateTime;
-import java.util.UUID;
+import ro.sda.javaro35.finalProject.service.user.appuser.request.LoginRequest;
 
 @Service
 @AllArgsConstructor

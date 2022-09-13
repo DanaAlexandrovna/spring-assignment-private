@@ -1,4 +1,4 @@
-package ro.sda.javaro35.finalProject.entities.request;
+package ro.sda.javaro35.finalProject.service.user.appuser.request;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,9 +9,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class FlightRequest {
+public class TicketRequest {
 
     private final Long id;
-    private final String departure;
-    private final double price;
+
 }

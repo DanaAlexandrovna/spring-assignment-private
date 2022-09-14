@@ -3,6 +3,11 @@ package ro.sda.javaro35.finalProject.config;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,8 +22,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUser;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUserRepository;
 import ro.sda.javaro35.finalProject.service.user.appuser.AppUserService;
+import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationToken;
+import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationTokenRepository;
+import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationTokenService;
 
 
 @Configuration
@@ -29,6 +43,336 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Bean
+    public AppUserService beanAppUserService() {
+        AppUserRepository appUserRepository = new AppUserRepository() {
+            @Override
+            public Optional<AppUser> findByEmail(String email) {
+                return Optional.empty();
+            }
+
+            @Override
+            public int enableAppUser(String email) {
+                return 0;
+            }
+
+            @Override
+            public AppUser authenticate(String email) {
+                return null;
+            }
+
+            @Override
+            public List<AppUser> findAll() {
+                return null;
+            }
+
+            @Override
+            public List<AppUser> findAll(Sort sort) {
+                return null;
+            }
+
+            @Override
+            public List<AppUser> findAllById(Iterable<Long> longs) {
+                return null;
+            }
+
+            @Override
+            public <S extends AppUser> List<S> saveAll(Iterable<S> entities) {
+                return null;
+            }
+
+            @Override
+            public void flush() {
+
+            }
+
+            @Override
+            public <S extends AppUser> S saveAndFlush(S entity) {
+                return null;
+            }
+
+            @Override
+            public <S extends AppUser> List<S> saveAllAndFlush(Iterable<S> entities) {
+                return null;
+            }
+
+            @Override
+            public void deleteAllInBatch(Iterable<AppUser> entities) {
+
+            }
+
+            @Override
+            public void deleteAllByIdInBatch(Iterable<Long> longs) {
+
+            }
+
+            @Override
+            public void deleteAllInBatch() {
+
+            }
+
+            @Override
+            public AppUser getOne(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public AppUser getById(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public AppUser getReferenceById(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public <S extends AppUser> List<S> findAll(Example<S> example) {
+                return null;
+            }
+
+            @Override
+            public <S extends AppUser> List<S> findAll(Example<S> example, Sort sort) {
+                return null;
+            }
+
+            @Override
+            public Page<AppUser> findAll(Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public <S extends AppUser> S save(S entity) {
+                return null;
+            }
+
+            @Override
+            public Optional<AppUser> findById(Long aLong) {
+                return Optional.empty();
+            }
+
+            @Override
+            public boolean existsById(Long aLong) {
+                return false;
+            }
+
+            @Override
+            public long count() {
+                return 0;
+            }
+
+            @Override
+            public void deleteById(Long aLong) {
+
+            }
+
+            @Override
+            public void delete(AppUser entity) {
+
+            }
+
+            @Override
+            public void deleteAllById(Iterable<? extends Long> longs) {
+
+            }
+
+            @Override
+            public void deleteAll(Iterable<? extends AppUser> entities) {
+
+            }
+
+            @Override
+            public void deleteAll() {
+
+            }
+
+            @Override
+            public <S extends AppUser> Optional<S> findOne(Example<S> example) {
+                return Optional.empty();
+            }
+
+            @Override
+            public <S extends AppUser> Page<S> findAll(Example<S> example, Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public <S extends AppUser> long count(Example<S> example) {
+                return 0;
+            }
+
+            @Override
+            public <S extends AppUser> boolean exists(Example<S> example) {
+                return false;
+            }
+
+            @Override
+            public <S extends AppUser, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+                return null;
+            }
+        };
+        return new AppUserService(appUserRepository, bCryptPasswordEncoder, new ConfirmationTokenService(new ConfirmationTokenRepository() {
+            @Override
+            public Optional<ConfirmationToken> findByToken(String token) {
+                return Optional.empty();
+            }
+
+            @Override
+            public int updateConfirmedAt(String token, LocalDateTime confirmedAt) {
+                return 0;
+            }
+
+            @Override
+            public List<ConfirmationToken> findAll() {
+                return null;
+            }
+
+            @Override
+            public List<ConfirmationToken> findAll(Sort sort) {
+                return null;
+            }
+
+            @Override
+            public List<ConfirmationToken> findAllById(Iterable<Long> longs) {
+                return null;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> List<S> saveAll(Iterable<S> entities) {
+                return null;
+            }
+
+            @Override
+            public void flush() {
+
+            }
+
+            @Override
+            public <S extends ConfirmationToken> S saveAndFlush(S entity) {
+                return null;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> List<S> saveAllAndFlush(Iterable<S> entities) {
+                return null;
+            }
+
+            @Override
+            public void deleteAllInBatch(Iterable<ConfirmationToken> entities) {
+
+            }
+
+            @Override
+            public void deleteAllByIdInBatch(Iterable<Long> longs) {
+
+            }
+
+            @Override
+            public void deleteAllInBatch() {
+
+            }
+
+            @Override
+            public ConfirmationToken getOne(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public ConfirmationToken getById(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public ConfirmationToken getReferenceById(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> List<S> findAll(Example<S> example) {
+                return null;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> List<S> findAll(Example<S> example, Sort sort) {
+                return null;
+            }
+
+            @Override
+            public Page<ConfirmationToken> findAll(Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> S save(S entity) {
+                return null;
+            }
+
+            @Override
+            public Optional<ConfirmationToken> findById(Long aLong) {
+                return Optional.empty();
+            }
+
+            @Override
+            public boolean existsById(Long aLong) {
+                return false;
+            }
+
+            @Override
+            public long count() {
+                return 0;
+            }
+
+            @Override
+            public void deleteById(Long aLong) {
+
+            }
+
+            @Override
+            public void delete(ConfirmationToken entity) {
+
+            }
+
+            @Override
+            public void deleteAllById(Iterable<? extends Long> longs) {
+
+            }
+
+            @Override
+            public void deleteAll(Iterable<? extends ConfirmationToken> entities) {
+
+            }
+
+            @Override
+            public void deleteAll() {
+
+            }
+
+            @Override
+            public <S extends ConfirmationToken> Optional<S> findOne(Example<S> example) {
+                return Optional.empty();
+            }
+
+            @Override
+            public <S extends ConfirmationToken> Page<S> findAll(Example<S> example, Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> long count(Example<S> example) {
+                return 0;
+            }
+
+            @Override
+            public <S extends ConfirmationToken> boolean exists(Example<S> example) {
+                return false;
+            }
+
+            @Override
+            public <S extends ConfirmationToken, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+                return null;
+            }
+        }));
+    }
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider =

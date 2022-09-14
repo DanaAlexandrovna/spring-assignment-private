@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import ro.sda.javaro35.finalProject.entities.flight.Address;
 
 @Getter
 @Setter

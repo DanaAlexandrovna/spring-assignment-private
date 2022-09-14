@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.sda.javaro35.finalProject.entities.flight.Address;
-import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import ro.sda.javaro35.finalProject.exceptions.CantBeFoundException;
 import ro.sda.javaro35.finalProject.repository.AddressRepository;
 

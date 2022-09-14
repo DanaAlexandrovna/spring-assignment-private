@@ -5,8 +5,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-import java.util.Set;
-
 import static javax.persistence.GenerationType.AUTO;
 import static lombok.AccessLevel.PRIVATE;
 

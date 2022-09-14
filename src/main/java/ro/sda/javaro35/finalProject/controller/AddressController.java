@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.sda.javaro35.finalProject.entities.flight.Address;
-import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import ro.sda.javaro35.finalProject.service.flight.AddressService;
 
 @RestController

@@ -9,11 +9,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import ro.sda.javaro35.finalProject.exceptions.CantBeFoundException;
 import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationToken;
 import ro.sda.javaro35.finalProject.service.user.appuser.registration.token.ConfirmationTokenService;
 import ro.sda.javaro35.finalProject.service.user.appuser.request.LoginRequest;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -89,4 +91,35 @@ public class AppUserService implements UserDetailsService {
     public int enableAppUser(String email) {
         return appUserRepository.enableAppUser(email);
     }
+
+
+    // used as REST API:
+
+    public List<AppUser> all() {
+        return appUserRepository.findAll();
+    }
+    public AppUser add(AppUser appUser) {
+        appUser.setAppUserRole(appUser.getAppUserRole());
+        appUser.setId(appUser.getId());
+        appUser.setPassword(appUser.getPassword());
+        appUser.setEmail(appUser.getEmail());
+        appUser.setEnabled(appUser.getEnabled());
+        appUser.setFirstName(appUser.getFirstName());
+        appUser.setLastName(appUser.getLastName());
+        appUser.setLocked(appUser.getLocked());
+        return appUser;
+    }
+
+    public AppUser findById(Long id) {
+        return appUserRepository.findById(id).orElseThrow(() -> new CantBeFoundException("Address by id" + id + "cannot be found"));
+    }
+
+    public void delete(Long id) {
+        appUserRepository.deleteById(id);
+    }
+
+    public AppUser update(AppUser update) {
+        return appUserRepository.save(update);
+    }
+
 }

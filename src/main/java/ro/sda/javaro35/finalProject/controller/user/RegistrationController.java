@@ -15,12 +15,14 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping("/register")
+    @CrossOrigin(origins = "http://localhost:4200")
     public String register(@RequestBody RegistrationRequest request) {
         String result = registrationService.register(request);
         return result;
     }
 
     @GetMapping(path = "confirm")
+    @CrossOrigin(origins = "http://localhost:4200")
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
     }

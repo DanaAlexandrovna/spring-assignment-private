@@ -2,16 +2,16 @@ package ro.sda.javaro35.finalProject.service.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ro.sda.javaro35.finalProject.entities.user.User;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUser;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUserService;
 import ro.sda.javaro35.finalProject.service.user.appuser.request.LoginRequest;
 
 @Service
 @AllArgsConstructor
 public class LoginService {
-    private final UserService appUserService;
+    private final AppUserService appUserService;
 
-    public User authenticate(LoginRequest request) {
-        User appUser = appUserService.authenticate(request);
-        return appUser;
+    public AppUser authenticate(LoginRequest request) {
+        return appUserService.authenticate(request);
     }
 }

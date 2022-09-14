@@ -3,6 +3,7 @@ package ro.sda.javaro35.finalProject.controller.user;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ro.sda.javaro35.finalProject.entities.user.User;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUser;
 import ro.sda.javaro35.finalProject.service.user.appuser.request.LoginRequest;
 import ro.sda.javaro35.finalProject.service.user.LoginService;
 
@@ -15,10 +16,10 @@ public class LogInController {
 
 //    Logger logger = LoggerFactory.getLogger(LogInController.class);
     @PostMapping( "/login")
-    public User authenticate(@RequestBody LoginRequest request) {
+    public AppUser authenticate(@RequestBody LoginRequest request) {
 //        logger.info("HELLO");
         System.out.println(request);
-        User result = loginService.authenticate(request);
+        AppUser result = loginService.authenticate(request);
         return result;
     }
 }

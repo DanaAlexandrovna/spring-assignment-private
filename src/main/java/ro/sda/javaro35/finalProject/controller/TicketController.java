@@ -9,7 +9,8 @@ import ro.sda.javaro35.finalProject.service.flight.TicketService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "tickets")
+@RequestMapping(path = "/tickets")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TicketController {
     private final TicketService ticketService;
 
@@ -25,7 +26,6 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ticket> findById(@PathVariable("id") Long id) {
         Ticket ticket = ticketService.findById(id);
         return new ResponseEntity<>(ticket, HttpStatus.OK);

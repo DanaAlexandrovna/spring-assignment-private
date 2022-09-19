@@ -1,5 +1,7 @@
 package ro.sda.javaro35.finalProject.entities.flight;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,6 +17,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "flight")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@id")
 public class Flight {
 
     @Id
@@ -30,10 +33,11 @@ public class Flight {
     double price;
 
     // oneToMany relation to Airport:
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "from_airport_id", nullable = false)
     private Airport fromAirport;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "to_airport_id", nullable = false)
     private Airport toAirport;
 

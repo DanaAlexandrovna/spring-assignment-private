@@ -1,5 +1,7 @@
 package ro.sda.javaro35.finalProject.entities.flight;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,6 +16,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "address")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@id")
 public class Address {
 
     @Id
@@ -29,5 +32,4 @@ public class Address {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "airport_id", referencedColumnName = "id")
     private Airport airport;
-
 }

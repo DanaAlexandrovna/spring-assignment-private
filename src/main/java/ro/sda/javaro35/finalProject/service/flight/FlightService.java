@@ -6,6 +6,9 @@ import ro.sda.javaro35.finalProject.entities.flight.Flight;
 import ro.sda.javaro35.finalProject.exceptions.CantBeFoundException;
 import ro.sda.javaro35.finalProject.repository.FlightRepository;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+
 @Service
 public class FlightService {
 
@@ -16,7 +19,9 @@ public class FlightService {
         this.flightRepository = flightRepository;
     }
 
-    //save ??????
+    public List<Flight> all() {
+        return flightRepository.findAll();
+    }
     public Flight addFlight(Flight flight) {
         flight.setDeparture(flight.getDeparture());
         flight.setPrice(flight.getPrice());
@@ -24,7 +29,11 @@ public class FlightService {
     }
 
     public Flight findById(Long id) {
-        return flightRepository.findById(id).orElseThrow(() -> new CantBeFoundException("Flight by id" + id + "cannot be found"));
+        if (flightRepository.findById(id).isPresent())
+            return flightRepository.findById(id).get();
+        else{
+            throw new EntityNotFoundException("");
+        }
     }
 
 

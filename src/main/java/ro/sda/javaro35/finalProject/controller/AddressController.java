@@ -4,10 +4,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.sda.javaro35.finalProject.entities.flight.Address;
+import ro.sda.javaro35.finalProject.entities.flight.Airport;
 import ro.sda.javaro35.finalProject.service.flight.AddressService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(path = "addresses")
+@RequestMapping(path = "/addresses")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AddressController {
 
     private final AddressService addressService;
@@ -16,8 +20,14 @@ public class AddressController {
         this.addressService = addressService;
     }
 
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Address>> getAllAirports() {
+        List<Address> addresses = addressService.findAllAirports();
+        return new ResponseEntity<>(addresses, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Address> findById(@PathVariable("id") Long id) {
         Address address = addressService.findById(id);
         return new ResponseEntity<>(address, HttpStatus.OK);

@@ -10,7 +10,8 @@ import ro.sda.javaro35.finalProject.service.flight.AirportService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "airports")
+@RequestMapping(path = "/airports")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AirportController {
 
     private final AirportService airportService;
@@ -26,7 +27,7 @@ public class AirportController {
     }
 
     @GetMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
+
     public ResponseEntity<Airport> findById(@PathVariable("id") Long id) {
         Airport airport = airportService.findById(id);
         return new ResponseEntity<>(airport, HttpStatus.OK);

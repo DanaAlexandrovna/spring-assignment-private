@@ -11,7 +11,7 @@ import ro.sda.javaro35.finalProject.service.user.appuser.AppUserService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "users")
+@RequestMapping(path = "/users")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AppUserController {
 
@@ -21,7 +21,7 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<AppUser>> all() {
         List<AppUser> users = appUserService.all();

@@ -9,6 +9,7 @@ import ro.sda.javaro35.finalProject.repository.AircraftRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,5 +46,9 @@ public class AircraftService {
 
     public void deleteAircraft(Long id) {
         aircraftRepository.deleteById(id);
+    }
+
+    public List<Aircraft> findAll() {
+        return aircraftRepository.findAll();
     }
 }

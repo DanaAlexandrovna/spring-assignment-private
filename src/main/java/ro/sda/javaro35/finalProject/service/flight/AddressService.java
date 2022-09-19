@@ -7,6 +7,8 @@ import ro.sda.javaro35.finalProject.entities.flight.Address;
 import ro.sda.javaro35.finalProject.exceptions.CantBeFoundException;
 import ro.sda.javaro35.finalProject.repository.AddressRepository;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -31,5 +33,9 @@ public class AddressService {
 
     public Address updateAddress(Address update) {
         return addressRepository.save(update);
+    }
+
+    public List<Address> findAllAirports() {
+        return addressRepository.findAll();
     }
 }

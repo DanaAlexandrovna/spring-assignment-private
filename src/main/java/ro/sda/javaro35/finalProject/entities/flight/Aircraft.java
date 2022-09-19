@@ -1,5 +1,7 @@
 package ro.sda.javaro35.finalProject.entities.flight;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -16,6 +18,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @FieldDefaults(level = PRIVATE)
 @Table(name = "aircraft")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@id")
 public class Aircraft {
     @Id
     @GeneratedValue(strategy = AUTO)

@@ -4,11 +4,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.sda.javaro35.finalProject.entities.flight.Aircraft;
+import ro.sda.javaro35.finalProject.entities.flight.Airport;
 import ro.sda.javaro35.finalProject.entities.flight.Ticket;
 import ro.sda.javaro35.finalProject.service.flight.AircraftService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(path = "aircrafts")
+@RequestMapping(path = "/aircrafts")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AircraftController {
 
     private final AircraftService aircraftService;
@@ -17,12 +21,18 @@ public class AircraftController {
         this.aircraftService = aircraftService;
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Aircraft>> getAll() {
+        List<Aircraft> aircrafts = aircraftService.findAll();
+        return new ResponseEntity<>(aircrafts, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Aircraft> findById(@PathVariable("id") Long id) {
         Aircraft aircraft = aircraftService.findById(id);
         return new ResponseEntity<>(aircraft, HttpStatus.OK);
     }
+
 
 
 // here it does not work with 2* CREATED

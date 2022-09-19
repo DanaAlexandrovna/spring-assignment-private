@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import ro.sda.javaro35.finalProject.entities.user.User;
+import ro.sda.javaro35.finalProject.service.user.appuser.AppUser;
 
 import javax.persistence.*;
 
@@ -30,7 +31,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private AppUser user;
 
     @ManyToOne
     @JoinColumn(name = "aircraft_id")

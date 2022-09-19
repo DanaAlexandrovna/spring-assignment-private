@@ -12,16 +12,13 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class TicketService {
-    final TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
-    @Autowired
-    public TicketService(TicketRepository ticketRepository) {
-        this.ticketRepository = ticketRepository;
-    }
 
 
     public List<Ticket> findAll() {

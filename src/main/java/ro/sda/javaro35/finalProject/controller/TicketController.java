@@ -20,9 +20,10 @@ public class TicketController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<Ticket>> getAllTickets(){
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<?> getAllTickets(){
         List<Ticket> tickets = ticketService.findAll();
-        return new ResponseEntity<>(tickets, HttpStatus.OK);
+        return new ResponseEntity<List<Ticket>>(tickets, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -32,18 +33,21 @@ public class TicketController {
     }
 
     @PostMapping("/add")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ticket> addTicket(@RequestBody Ticket ticket){
         Ticket addTicket = ticketService.addTicket(ticket);
         return new ResponseEntity<>(addTicket, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket){
         Ticket updateTicket = ticketService.updateTicket(ticket);
         return new ResponseEntity<>(updateTicket, HttpStatus.OK);
     }
 
     @DeleteMapping ("/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> deleteTicket(@PathVariable("id") Long id){
         ticketService.deleteTicket(id);
         return new ResponseEntity<>(HttpStatus.OK);

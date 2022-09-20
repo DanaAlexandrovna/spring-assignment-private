@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import ro.sda.javaro35.finalProject.entities.user.User;
 import ro.sda.javaro35.finalProject.service.user.appuser.AppUser;
 
 import javax.persistence.*;

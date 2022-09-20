@@ -25,9 +25,9 @@ public class TicketService {
         return ticketRepository.findAll();
     }
 
+
     public Ticket addTicket(Ticket ticket) {
-     //   ticket.setId(UUID.randomUUID().toString());
-       ticket.setId(ticket.getId());
+
         return ticketRepository.save(ticket);
     }
 
